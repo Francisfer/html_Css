@@ -1,0 +1,147 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+  line-height: 1.4; /* Space between elements - no unit */
+}
+
+/* PRODUCT */
+.product {
+  border: 4px solid #000;
+  width: 829px;
+  /* margin-left: auto;
+  margin-right: auto; */
+  margin: 50px auto;
+  position: relative; /* For the pseudo element */
+}
+
+.product-title {
+  font-size: 22px;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: #f7f7f7;
+  padding: 15px;
+  /* margin: 0; */
+}
+
+/* PRODUCT INFO */
+
+.price {
+  font-size: 24px;
+}
+
+.shipping {
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #777;
+  margin-bottom: 20px;
+}
+
+.more-info:link,
+.more-info:visited {
+  /* attention to the syntax (,) and order */
+  color: black;
+  /* Inline element, margin and padding work differently - margin only horizontally, padding seems to work but no new space is added, the element itself stays in the same place */
+  /* display: inline-block;  IT IS BETTER TO WORK WITH THE NEXT ELEMENT */
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+
+.more-info:hover,
+.more-info:active {
+  /* attention to the syntax (,) and order */
+  text-decoration: none;
+}
+
+/* PRODUCT DETAILS */
+.details-title {
+  text-transform: uppercase;
+  font-size: 16px;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+.details-list {
+  list-style: square;
+  margin-left: 20px;
+}
+
+.details-list li {
+  /* child elements of details list */
+  margin-bottom: 10px;
+}
+
+/* BUTTON */
+
+.add-cart {
+  color: #fff;
+  border: none;
+  font-size: 25px;
+  text-transform: uppercase;
+  background-color: #000;
+  cursor: pointer;
+  padding: 15px;
+  width: 100%;
+  border-top: 4px solid #000; /* Remember that we want to overwrite the border here so that the content doesn't change */
+}
+.add-cart:hover {
+  color: #000;
+  background-color: #fff;
+  /* cursor: pointer; NOT HERE */
+
+  /* border-top: 4px solid #000; */
+}
+
+/* PSEUDO ELEMENTS */
+
+h2::after {
+  content: "SALE";
+  color: #fff;
+  background-color: #f00;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 7px 15px; /* horizontal double of vertical is a good rule of thumb */
+  letter-spacing: 2px;
+  position: absolute;
+  left: -38px;
+  top: -17px;
+}
+
+/* COLORS */
+.color {
+  background-color: #000;
+  height: 22px;
+  width: 22px;
+  display: inline-block; /* Hence the purpose of the parent class */
+  margin-right: 10px;
+  margin-top: 30px;
+
+  /* position: relative; */
+}
+.color-blue {
+  /* position: absolute; REMEMBER WHY THIS WAS NOT A GOOD SOLUTION */
+  /* display: inline-block; */
+  /* height: 22px;
+  width: 22px;
+  left: 0px; */
+  background-color: #2f6ee2; /* The color is the only thing that actually changes */
+}
+
+.color-red {
+  background-color: #ec2f2f;
+}
+.color-yellow {
+  background-color: #f0bf1e;
+}
+
+.color-green {
+  background-color: #90cc20;
+}
+
+.color-brown {
+  background-color: #885214;
+}

@@ -30,7 +30,7 @@ body {
 
 .container {
   /* To center the page*/
-  width: 800px;
+  width: 1200px;
   /* margin-left: auto;
   margin-right: auto; */
   margin: 0 auto;
@@ -59,8 +59,8 @@ aside {
   border-bottom: 5px solid #1098ad;
   /* padding-top: 50px;
   padding-bottom: 50px; */
-  padding: 50px 0;
-  width: 500px;
+  padding: 50px 40px;
+  /* width: 500px; Overwritten below */
 }
 
 /* SMALLER ELEMENTS */
@@ -134,6 +134,7 @@ li:last-child {
 
 .related {
   list-style: none;
+  margin-left: 0; /* Overwriting the code above */
 }
 
 /* .first-li {
@@ -235,4 +236,52 @@ h2::after {
   position: absolute;
   top: -10px;
   right: -25px;
+}
+
+/* FLOATS */
+.author-img {
+  float: left; /* The text from the paragraph (next in the code) floats around the image */
+  margin-bottom: 20px; /* Notice that a floated image is still capable of adding margins around it.*/
+}
+.author {
+  /*margin-left: 10px; /* Does not work because the text floats around the image, however, in the inspector, you can see that the p does not start after the image but behind it. */
+  /* To work we need to add much more px, this proves that the image has been taken completely out of the flow */
+  /* margin-left: 80px; */
+  margin-top: 10px;
+  float: left; /* if we also use float on the paragraph you can see that now it actually starts after the img, so we don't need so much margin */
+  margin-left: 20px;
+}
+
+h1 {
+  float: left;
+}
+/* Both of these lines of code explain the elements height collapse. Both are out of the flow, so the header container stays without content, so the display only appears because we've specified a height, otherwise it would completely disappear. */
+
+/* See the differences between normal flow, absolute positioning and floats */
+nav {
+  float: right;
+}
+
+/* To clear the floats */
+
+.clear {
+  clear: both; /* We have floats to the right and the left so we use both */
+}
+
+article {
+  /* background-color: green;*/ /* Good technique to see the boxes clearly */
+  /* width: 900px;*/ /*900 + 300(aside) is equal to the 1200 that we specify for the container */
+  width: 825px; /* removed some width so there is a space between both*/
+  float: left;
+}
+aside {
+  /*background-color: red;*/ /* Good technique to see the boxes clearly */
+  width: 300px;
+  float: right;
+  /* Remember that the footer appeared after the aside. */
+}
+
+footer {
+  /*background-color: yellow; */ /* Good technique to see the boxes clearly */
+  clear: both; /* to go where it belongs */
 }
