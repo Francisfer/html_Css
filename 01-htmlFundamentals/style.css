@@ -17,6 +17,7 @@ GLOBAL RESET first
   margin: 0;
   padding: 0;
   /* easily overwritten*/
+  box-sizing: border-box; /* Not on the body because it is not a property that gets inherited */
 }
 /* PAGE SECTIONS */
 body {
@@ -59,8 +60,11 @@ aside {
   border-bottom: 5px solid #1098ad;
   /* padding-top: 50px;
   padding-bottom: 50px; */
-  padding: 50px 40px;
+  padding: 50px 40px; /* The element becomes too big to fit with the default properties of the box model */
   /* width: 500px; Overwritten below */
+
+  /* box-sizing: border-box;*/ /* sets the size of the element exactly to what we want, if we pad, it will subtract to the content area */
+  /* We want this applied to all the boxes on the page, so we place it right at the universal selector */
 }
 
 /* SMALLER ELEMENTS */
@@ -93,6 +97,7 @@ h4 {
 
   text-transform: uppercase;
   text-align: center;
+  margin-bottom: 30px;
 }
 
 p {
@@ -185,7 +190,7 @@ nav a {
   /* display: block; */
 
   margin-right: 30px;
-  margin-top: 10px;
+  /* margin-top: 10px; */
   display: inline-block;
 }
 
@@ -239,49 +244,129 @@ h2::after {
 }
 
 /* FLOATS */
-.author-img {
-  float: left; /* The text from the paragraph (next in the code) floats around the image */
-  margin-bottom: 20px; /* Notice that a floated image is still capable of adding margins around it.*/
-}
-.author {
-  /*margin-left: 10px; /* Does not work because the text floats around the image, however, in the inspector, you can see that the p does not start after the image but behind it. */
-  /* To work we need to add much more px, this proves that the image has been taken completely out of the flow */
-  /* margin-left: 80px; */
-  margin-top: 10px;
-  float: left; /* if we also use float on the paragraph you can see that now it actually starts after the img, so we don't need so much margin */
-  margin-left: 20px;
-}
 
-h1 {
+/* The text from the paragraph (next in the code) floats around the image */
+/* Notice that a floated image is still capable of adding margins around it.*/
+/* .author-img {
   float: left;
-}
+  margin-bottom: 20px;
+} */
+
+/*margin-left: 10px; /* Does not work because the text floats around the image, however, in the inspector, you can see that the p does not start after the image but behind it. */
+/* To work we need to add much more px, this proves that the image has been taken completely out of the flow */
+/* margin-left: 80px; */
+
+/* if we also use float on the paragraph you can see that now it actually starts after the img, so we don't need so much margin */
+/* .author {
+  margin-top: 10px;
+  float: left;
+  margin-left: 20px;
+} */
+
+/* h1 {
+  float: left;
+} */
 /* Both of these lines of code explain the elements height collapse. Both are out of the flow, so the header container stays without content, so the display only appears because we've specified a height, otherwise it would completely disappear. */
 
 /* See the differences between normal flow, absolute positioning and floats */
-nav {
+/* nav {
   float: right;
-}
+} */
 
 /* To clear the floats */
 
-.clear {
-  clear: both; /* We have floats to the right and the left so we use both */
+/* We have floats to the right and the left so we use both */
+/* .clear {
+  clear: both;
+} */
+
+/* background-color: green;*/ /* Good technique to see the boxes clearly */
+/* width: 900px;*/ /*900 + 300(aside) is equal to the 1200 that we specify for the container */
+/* removed some width so there is a space between both*/
+/* article {
+  width: 825px;
+  float: left;
+} */
+
+/*background-color: red;*/ /* Good technique to see the boxes clearly */
+/* Remember that the footer appeared after the aside. */
+/* aside {
+  width: 300px;
+  float: right;
+} */
+
+/*background-color: yellow; */ /* Good technique to see the boxes clearly */
+/* to go where it belongs */
+/* footer {
+  clear: both;
+} */
+
+/* USING FLEXBOX */
+
+/* Remember that we only have two elements (flex items) so justify content space between moves each to one side */
+/* Also, we overwrite a lot of the rules written earlier */
+.main-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.author-box {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.author {
+  margin-bottom: 0;
+  margin-left: 15px;
+}
+
+/* Styling the aside */
+.related-post {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+.related-post:last-child {
+  margin-bottom: 0;
+}
+/* Resetting some rules*/
+
+.related-link:link {
+  font-size: 17px;
+  font-weight: bold;
+  font-style: normal;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.related-author {
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: italic;
+}
+
+.row {
+  display: flex;
+  align-content: center;
+  gap: 75px;
+  margin-bottom: 60px;
+  align-items: flex-start;
 }
 
 article {
-  /* background-color: green;*/ /* Good technique to see the boxes clearly */
-  /* width: 900px;*/ /*900 + 300(aside) is equal to the 1200 that we specify for the container */
-  width: 825px; /* removed some width so there is a space between both*/
-  float: left;
+  /* flex: 0 0 825px; */ /* We don't need to do the math if we set the article flex to 1, automatically fits the space available. */
+  flex: 1;
+  margin-bottom: 0;
 }
+/* 
+DEFAULTS
+flex-grow: 0; set to one allows the elements to grow to fit the container, to zero they occupy only what they need
+  flex-shrink: 1; 1 allowed to shrink if the size that we specify is too big to fit the items in the container. 
+    flex-basis: auto; */
 aside {
-  /*background-color: red;*/ /* Good technique to see the boxes clearly */
-  width: 300px;
-  float: right;
-  /* Remember that the footer appeared after the aside. */
-}
-
-footer {
-  /*background-color: yellow; */ /* Good technique to see the boxes clearly */
-  clear: both; /* to go where it belongs */
+  flex: 0 0 300px;
 }

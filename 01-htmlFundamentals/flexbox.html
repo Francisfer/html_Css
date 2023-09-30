@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flexbox</title>
+    <style>
+      .el--1 {
+        background-color: blueviolet;
+      }
+      .el--2 {
+        background-color: orangered;
+      }
+      .el--3 {
+        background-color: green;
+        height: 150px;
+      }
+      .el--4 {
+        background-color: goldenrod;
+      }
+      .el--5 {
+        background-color: palevioletred;
+      }
+      .el--6 {
+        background-color: steelblue;
+      }
+      .el--7 {
+        background-color: yellow;
+      }
+      .el--8 {
+        background-color: crimson;
+      }
+
+      .container {
+        /* STARTER */
+        font-family: sans-serif;
+        background-color: #ddd; /*Background color of the rest of the container */
+        font-size: 40px;
+        margin: 40px;
+
+        /* FLEXBOX */
+        display: flex; /* Flex container - side by side without having to use any floats */
+        align-items: center; /* Notice that the green is different, aligns all items on the cross axis - vertically */
+        /* justify-content: space-between; */ /* all Centered horizontally (main axis inside of the container */
+        justify-content: flex-start;
+        /*gap: 30px;*/ /* Manually adding space between the items */
+      }
+
+      .el--1 {
+        align-self: flex-start; /* In many situations we want to overwrite the configuration in the container rule for one single element */
+      }
+
+      .el--5 {
+        align-self: stretch;
+        order: 1; /* goes to the end */
+      }
+
+      .el--6 {
+        order: -1; /* 0 by default for all of the items, so if we want an element to move to the beginning we need to give it a negative value. giving another element a greater number (-2) would overwrite this REMEMBER THE TECHNIQUE */
+      }
+
+      .el {
+        /* One of the most important properties is the flex property (property that we use to size flex items) SHORTHAND - flex 0, 0, 200pz */
+        /* 
+        DEFAULTS
+        flex-grow: 0; set to one allows the elements to grow to fit the container, to zero they occupy only what they need
+        flex-shrink: 1; 1 allowed to shrink if the size that we specify is too big to fit the items in the container. 
+        flex-basis: auto; */
+
+        /* When we want to size flex items with a width, we do not use the width property, we use flex-basis*/
+        flex-basis: 100px; /* This is not rigid, if the content is smaller that 100px, the elements gets what we've specified, if the content is larger, then the element expands to fit it.*/
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Flex items - child elements of the flex container, occupies just the space that they need horizontally -->
+      <!-- Vertically, all the flex items are as tall as the tallest element (specified in el--3 150 px)-->
+      <div class="el el--1">HTML</div>
+      <div class="el el--2">and</div>
+      <div class="el el--3">CSS</div>
+      <div class="el el--4">are</div>
+      <div class="el el--5">amazing</div>
+      <div class="el el--6">languages</div>
+      <!-- <div class="el el--7">to</div>
+      <div class="el el--8">learn</div> -->
+    </div>
+  </body>
+</html>
