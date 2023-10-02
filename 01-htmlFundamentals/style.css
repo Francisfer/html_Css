@@ -39,14 +39,14 @@ body {
 .main-header {
   background-color: #f7f7f7;
   padding: 20px 40px; /* left, right or all in one: value1 (top and bottom), value2 (left and right*/
-  margin-bottom: 60px;
+  /* margin-bottom: 60px; */
   /* height: 80px; */ /* if we have a fixed height, when we change the nav to block, the elements will overlap other (no longer fit, so the box does not expand. */
 }
 nav {
   font-size: 18px;
 }
 article {
-  margin-bottom: 60px;
+  /* margin-bottom: 60px; */
 }
 
 .post-header {
@@ -349,24 +349,55 @@ h2::after {
   font-style: italic;
 }
 
-.row {
+/* .row {
   display: flex;
   align-content: center;
   gap: 75px;
   margin-bottom: 60px;
   align-items: flex-start;
-}
+} */
 
-article {
-  /* flex: 0 0 825px; */ /* We don't need to do the math if we set the article flex to 1, automatically fits the space available. */
-  flex: 1;
+/* article { */
+/* flex: 0 0 825px; */ /* We don't need to do the math if we set the article flex to 1, automatically fits the space available. */
+/* flex: 1;
   margin-bottom: 0;
-}
+} */
 /* 
 DEFAULTS
 flex-grow: 0; set to one allows the elements to grow to fit the container, to zero they occupy only what they need
   flex-shrink: 1; 1 allowed to shrink if the size that we specify is too big to fit the items in the container. 
     flex-basis: auto; */
-aside {
+/* aside {
   flex: 0 0 300px;
+} */
+
+/* CSS GRID LAYOUT */
+
+.container {
+  display: grid;
+  /* remember that we want the aside with 300px and the article with the remaining space */
+  grid-template-columns: 1fr 300px;
+
+  column-gap: 75px;
+  row-gap: 60px;
+  /* gap: 75px; */
+  align-items: start;
+}
+
+.main-header {
+  /* align-items: start; */
+  grid-column: 1 / -1;
+}
+
+article {
+  /* grid-column: 1; */
+}
+
+aside {
+  /* align-items: start; here it would have to be self-align - remember, this is done in the container */
+}
+
+footer {
+  /* background-color: #1098ad; */
+  grid-column: 1 / -1;
 }
