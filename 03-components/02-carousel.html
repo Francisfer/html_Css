@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Carousel Component</title>
+    <style>
+      /*
+SPACING SYSTEM (px)
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+
+FONT SIZE SYSTEM (px)
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+*/
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      /*
+MAIN COLOR: #087f5b
+GREY COLOR - Text: #343a40
+*/
+      /* ------------------------ */
+      /* GENERAL STYLES - SAME AS SAYING REUSABLE ONES */
+      /* ------------------------ */
+      body {
+        font-family: "Inter", sans-serif;
+        color: #343a40;
+        line-height: 1;
+      }
+      /* CAROUSEL */
+
+      .carousel {
+        width: 800px;
+        margin: 100px auto;
+        /* padding: 32px; */
+        /* Left padding so that the image goes to the right. Also increasing the gap for it not to overlay the text */
+        /* padding-left: 86px; */
+        padding: 32px 48px 32px 86px; /* Top right bottom left*/
+        background-color: #087f5b;
+        border-radius: 8px;
+        /* color: #fff;  Overwritten */
+
+        display: flex;
+        align-items: center;
+        gap: 86px;
+        position: relative;
+      }
+      /*Button formatting - buttons have borders that we need to set to none */
+      .btn {
+        background-color: #fff;
+        border: none;
+        /* border: 2px solid #087f5b; Its is better with the shadow */
+        height: 40px;
+        width: 40px;
+        position: absolute;
+        border-radius: 50%; /* Because they are perfect squares */
+        /* To align - the button-icon is a child class, so we can set this to a flex container */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+      }
+
+      /* Remember that the buttons were already aligned to the center, but that's because we define that in the carousel container */
+      /* To see how this technique of absolute positioning and centering at the same time works we commented it out */
+      /* This technique uses transform with translate. What translate does is to move the element around, the first value is for the x (horizontal) and the second for the element's height */
+      .btn--left {
+        /* IN RELATION TO THE PARENT ELEMENT */
+        left: 0;
+        top: 50%; /* Just this doesn't work - remember, but brings the top of the element to exactly half of the container */
+
+        /* IN RELATION TO ITSELF */
+        transform: translate(-50%, -50%);
+        /* The element will move up (-) 50% of its own height, placing it to the horizontal center, the first value brings half of the button to outside of the container */
+      }
+      .btn--right {
+        right: 0;
+        top: 50%;
+        transform: translate(50%, -50%);
+      }
+      .btn-icon {
+        height: 24px;
+        width: 24px;
+        stroke: #087f5b;
+      }
+      img {
+        height: 200px;
+        border-radius: 8px;
+        /* To scale the image - new property - transform is used for many different things */
+        transform: scale(1.5);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+      }
+
+      .testimonial-text {
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 1.5;
+        margin-bottom: 32px;
+        color: #e6fcf5;
+      }
+
+      .testimonial-author {
+        font-size: 14px;
+        margin-bottom: 4px;
+        color: #c3fae8;
+      }
+
+      .testimonial-job {
+        font-size: 12px;
+        color: #c3fae8;
+      }
+      .dots {
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        transform: translate(-50%, 32px);
+
+        /* for the space between them */
+        display: flex;
+        gap: 12px;
+      }
+      .dot {
+        height: 12px;
+        width: 12px;
+        background-color: #fff;
+        border: 2px solid #087f5b;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+      .dot--fill {
+        background-color: #087f5b;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Blockquote for quotes from another source -->
+    <div class="carousel">
+      <img src="maria.jpg" alt="Maria de Almeida" />
+      <blockquote class="testimonial">
+        <p class="testimonial-text">
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
+          esse facere repudiandae excepturi non minima nemo iure dolorum,
+          eveniet eaque laboriosam soluta quod suscipit!"
+        </p>
+        <p class="testimonial-author">Maria de Almeida</p>
+        <p class="testimonial-job">Senior Product Manager at EDP Comercial</p>
+      </blockquote>
+      <button class="btn btn--left">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="btn-icon"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M15.75 19.5L8.25 12l7.5-7.5"
+          />
+        </svg>
+      </button>
+      <button class="btn btn--right">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="btn-icon"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M8.25 4.5l7.5 7.5-7.5 7.5"
+          />
+        </svg>
+      </button>
+      <!-- code for the dots -->
+      <div class="dots">
+        <!-- It is best practice to create an empty space with an html entity instead of just leave it empty - non breaking space-->
+        <button class="dot dot--fill">&nbsp;</button>
+        <button class="dot">&nbsp;</button>
+        <button class="dot">&nbsp;</button>
+        <button class="dot">&nbsp;</button>
+      </div>
+    </div>
+  </body>
+</html>
+
+<!-- 
+  
+  THINGS TO TAKE 
+
+1. How to scale an image with transform and how its position in defined by the padding of the parent container.
+2. Place an element anywhere that we want by using a combination of absolute positioning and the transform with translate.
+
+-->

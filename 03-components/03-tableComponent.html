@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Carousel Component</title>
+    <style>
+      /*
+SPACING SYSTEM (px)
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+
+FONT SIZE SYSTEM (px)
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+*/
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      /*
+MAIN COLOR: #087f5b
+GREY COLOR - Text: #343a40
+*/
+      /* ------------------------ */
+      /* GENERAL STYLES - SAME AS SAYING REUSABLE ONES */
+      /* ------------------------ */
+      body {
+        font-family: "Inter", sans-serif;
+        color: #343a40;
+        line-height: 1;
+        display: flex;
+        justify-content: center;
+      }
+
+      /* TABLE COMPONENT */
+
+      table {
+        font-size: 18px;
+        width: 800px;
+        /* background-color: greenyellow; */
+        /* margin: 60px auto;  LEARN ANOTHER WAY - setting the entire body for display flex */
+        margin-top: 100px;
+        /* border: 1px solid #343a40; */ /* Outside border */
+        border-collapse: collapse; /* To collapse borders that are close to others, because we add them to the cells */
+        /* Also used to remove the boarders when we want the first row to have a background color without separation */
+      }
+
+      /* Inside border */
+      td,
+      th {
+        /* border: 1px solid #343a40; */
+        padding: 16px 24px;
+        text-align: left;
+      }
+
+      /* Notice the same technique for selecting the child elements */
+      thead th {
+        background-color: #087f5b;
+        color: #fff;
+        width: 25%; /* To adjust the width of all the HEAD cells, because the others will follow */
+      }
+
+      /* Zebra pattern with odd and even numbers */
+
+      tbody tr:nth-child(odd) {
+        background-color: #f8f9fa;
+      }
+      tbody tr:nth-child(even) {
+        background-color: #e9ecef;
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>Chair</th>
+          <th>The Laid Back</th>
+          <th>The Worker Bee</th>
+          <th>The Chair 4/2</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Width</th>
+          <td>80 cm</td>
+          <td>60 cm</td>
+          <td>220 cm</td>
+        </tr>
+        <tr>
+          <th>Height</th>
+          <td>100 cm</td>
+          <td>110 cm</td>
+          <td>90 cm</td>
+        </tr>
+        <tr>
+          <th>Depth</th>
+          <td>70 cm</td>
+          <td>65 cm</td>
+          <td>80 cm</td>
+        </tr>
+        <tr>
+          <th>Weight</th>
+          <td>16 kg</td>
+          <td>22 kg</td>
+          <td>80 kg</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+
+<!-- 
+ TABLES are not that used anymore in modern code to build layouts (flexbox and grid), but they are still widely used to represent datasets that can be displayed using a table.
+ It is also important for the semantic - Table head, th(bold/center), table body, th and td 
+-->
