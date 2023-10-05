@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Omnifood Hero Section</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Rubik:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      /* GENERAL TEXT STYLES */
+      html {
+        font-family: "Rubik", sans-serif;
+        color: #444;
+      }
+
+      /* Class to center all the elements that we want */
+      .container {
+        margin: 0 auto;
+        width: 1200px; /* Remember that we always need this in this technique */
+      }
+
+      .header-container {
+        width: 1200px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        /* background-color: violet; */
+        transform: translate(-50%, -50%);
+        /* text-align: center; */
+      }
+
+      /* This is the class that now contains the text and it's inside (child) of the previous container, so we can give it a width of 50 so it occupies half of its parent */
+      .header-container-inner {
+        /* background-color: bisque; */
+        width: 50%;
+      }
+      header {
+        /* background-color: orangered; */
+        /* Setting the height of the header to the entire viewport */
+        height: 100vh;
+        position: relative;
+        color: #fff;
+
+        /* New  PROPERTY */
+        /* background-image: url(hero.jpg); */
+        /* To adjust and size, the most of the times we use cover */
+        /* background-size: cover; */
+        /* The contrast is not enough to properly read the text, we need to darken the image */
+        /* How its done with linear gradient: */
+
+        /* Pure black does the job, but usually grey is better */
+        background-image: linear-gradient(
+            rgba(34, 34, 34, 0.6),
+            rgba(34, 34, 34, 0.6)
+          ),
+          url(hero.jpg);
+        background-size: cover;
+      }
+
+      nav {
+        font-size: 20px;
+        font-weight: 700;
+        display: flex;
+        justify-content: space-between;
+        /* background-color: green; */
+        /* background-image: linear-gradient(to right, red, blue); */
+        padding-top: 32px;
+      }
+      h1 {
+        font-size: 52px;
+        margin-bottom: 32px;
+        line-height: 1.05;
+      }
+
+      p {
+        font-size: 20px;
+        line-height: 1.6;
+        margin-bottom: 48px;
+      }
+
+      /* Visual styles */
+      .btn:link,
+      .btn:visited {
+        font-size: 20px;
+        font-weight: 600;
+        background-color: #e67e22;
+        color: #fff;
+        text-decoration: none;
+        display: inline-block;
+        padding: 16px 32px;
+        border-radius: 9px;
+      }
+
+      h2 {
+        font-size: 44px; /* Value below 52 in the h1 */
+        margin-bottom: 48px; /**/
+      }
+
+      section {
+        padding: 96px 0;
+        /* margin: 0 auto; We could do this, but then we need to repeat it to every single element that we want to be centered in the browser - so we create a class container */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- To create the hero section we use the header tag (semantic element for the introduction of the website) -->
+    <header>
+      <nav class="container">
+        <!-- Here we would include some logo and some navigation links, for now we just use two div -->
+        <div>LOGO</div>
+        <div>NAVIGATION</div>
+      </nav>
+      <div class="header-container">
+        <!-- inner is basically to create a box inside of the box that we've been aligning, so that we can place the text on the left, perfectly aligned -->
+        <div class="header-container-inner">
+          <h1>A healthy meal delivered to your door, every single day</h1>
+          <p>
+            The smart 365-days-per-year food subscription that will make you eat
+            healthy again. Tailored to your personal tastes and needs
+          </p>
+          <!-- Remember that whenever we have a  button that leads somewhere (href) we use anchor tags -->
+          <a href="#" class="btn">Start eating well</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Section is just a section of the page, we don't center it because we want to give it a background color, we center the div  -->
+    <section>
+      <div class="container">
+        <h2>Some random heading</h2>
+        <p>
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+          Exercitationem cupiditate ipsa optio sunt numquam suscipit ullam
+          veritatis ab dolor ipsam quo temporibus ex beatae perspiciatis, neque
+          harum nulla asperiores ipsum. Lorem ipsum dolor sit, amet consectetur
+          adipisicing elit. Quisquam, unde aperiam animi suscipit facere ab
+          delectus ut quos distinctio ipsum possimus, facilis nobis nesciunt
+          accusantium vero. At suscipit laudantium optio!
+        </p>
+      </div>
+    </section>
+  </body>
+</html>
+
+<!--
+  THINGS TO TAKE
+  1- Start with the visual text styles (on the elements directly)
+  2. After that start with the layout.
+  3. vh viewport height. There is also vw viewport height but it is much less used because these elements will already occupy 100% of the available space by default.
+  5- setting background images.
+  4 - linear gradient to darken the images. linear-gradient(to right/left, red, blue)
+      background-image: linear-gradient(
+            rgba(34, 34, 34, 0.6),
+            rgba(34, 34, 34, 0.6)
+          ),
+          url(hero.jpg);
+        background-size: cover;
+  -->

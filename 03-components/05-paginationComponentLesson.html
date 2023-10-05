@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Pagination Component</title>
+    <style>
+      /*
+      SPACING SYSTEM (px)
+      2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+
+      FONT SIZE SYSTEM (px)
+      10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+      */
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      /*
+      MAIN COLOR: #087f5b
+      GREY COLOR - Text: #343a40
+      */
+      /* ------------------------ */
+      /* GENERAL STYLES - SAME AS SAYING REUSABLE ONES */
+      /* ------------------------ */
+      body {
+        font-family: "Inter", sans-serif;
+        color: #343a40;
+        line-height: 1;
+        display: flex;
+        justify-content: center;
+      }
+
+      /* Pagination component */
+
+      /*5. Side by side - Using the margin: 0 auto would not work in this case because we didn't specify any width for this container*/
+      /* Instead we make the body a flex container */
+      .pagination {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: 200px;
+      }
+      /* 2. For both buttons with svg */
+      .btn {
+        border: 1px solid #087f5b;
+        height: 48px;
+        width: 48px;
+        border-radius: 50%;
+        background: none; /* REMEMBER when don't want to specify a color (none) we don't use color, just background */
+        cursor: pointer;
+      }
+      /* 1. Start here so we can set the size properly both the icons */
+      .btn-icon {
+        height: 24px;
+        width: 24px;
+        stroke: #087f5b;
+      }
+
+      /* 4. */
+      .btn:hover {
+        background-color: #087f5b;
+      }
+      /* IMPORTANT - we want to hover the button, change the background color and the stroke of the icon, however, we cannot do this: */
+      /* .btn-icon:hover {
+        stroke: #fff;
+      } */
+      /* If you go to the button you will notice that the icon changes color only when it is hovered, not when the button itself is hovered. This is what we need to do: */
+      .btn:hover .btn-icon {
+        stroke: #fff;
+      }
+      /* We want the icon (child) to change color as soon as the parent (btn) is hovered */
+
+      /* 3. Now the anchors */
+      .page-link:link,
+      .page-link:visited {
+        font-size: 18px;
+        color: #343a40;
+        text-decoration: none;
+        height: 36px;
+        width: 36px; /* Remember that just this does not work because each link is an inline element by default (no setting height and width) */
+        /* We could not achieve the space with padding, we would not get a perfect square */
+        display: flex; /* We didn't use inline-block because we need to center vertically and horizontally */
+        align-items: center;
+        justify-content: center;
+        /* gap: 50px; */ /* This is done in the parent container - REMEMBER */
+        border-radius: 50%;
+      }
+
+      .page-link:hover,
+      .page-link:active {
+        background-color: #087f5b;
+        color: #fff;
+      }
+      /* 6 - Notice that just by doing the following code, the background gets applied, but not the color of the text. We could also add this class to the hover and active, separating it with a comma to the DRY */
+      /* This happens because the color still comes from the link and visited, because they have higher specificity (two pseudo classes) */
+
+      /* .page-link--active {
+        background-color: #087f5b;
+        color: #fff;
+      } */
+
+      /* THIS does not either, not because of specificity but because the anchors do not have a parent class - REMEMBER THE ACCORDION BECAUSE THIS IS ALSO AN IMPORTANT TECHNIQUE */
+      /* .page-link .page-link--active {
+        background-color: #087f5b;
+        color: #fff;
+      } */
+
+      /*IMPORTANT - To do this we need the "and" selector. Here it is represented simply by not adding space or comma, meaning that this gets applied to the elements that have both these classes - THIS is how we operate when we have no parent class like the ACCORDION */
+
+      .page-link.page-link--active {
+        background-color: #087f5b;
+        color: #fff;
+      }
+      .dots {
+        color: #868e96;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="pagination">
+      <button class="btn">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="btn-icon"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M15.75 19.5L8.25 12l7.5-7.5"
+          />
+        </svg>
+      </button>
+      <a href="#" class="page-link">1</a>
+      <a href="#" class="page-link">2</a>
+      <a href="#" class="page-link page-link--active">3</a>
+      <a href="#" class="page-link">4</a>
+      <a href="#" class="page-link">5</a>
+      <a href="#" class="page-link">6</a>
+      <span class="dots">...</span>
+      <a href="#" class="page-link">23</a>
+      <button class="btn">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="btn-icon"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M8.25 4.5l7.5 7.5-7.5 7.5"
+          />
+        </svg>
+      </button>
+    </div>
+  </body>
+</html>
+
+<!-- 
+THINGS TO TAKE
+1. ALWAYS start with the visual styling before the layout.
+2. We must always specify the pseudo properties for the anchors.
+3. Anchors are inline elements, so no height or width are applicable, inline block works, but then we cannot align and justify.
+4. The and selector
+
+
+-->

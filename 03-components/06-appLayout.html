@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>App Layout</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Rubik:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      /* GENERAL STYLES */
+
+      body {
+        font-family: sans-serif;
+        color: #343a40;
+        font-size: 24px;
+
+        /* Usually we don't put these on the body */
+        text-align: center; /* Gets inherited */
+        font-weight: bold;
+        /**/
+        display: grid;
+        grid-template-columns: 80px 400px 1fr 250px;
+        grid-template-rows: 80px 1fr;
+        height: 100vh;
+      }
+
+      nav,
+      /* menu,  to remove the padding from menu, in order for them to occupy the hole container */
+      section,
+      main,
+      aside {
+        padding-top: 24px;
+      }
+      nav {
+        background-color: #343a40;
+        grid-row: 1 / -1;
+        color: #fff;
+      }
+
+      menu {
+        background-color: #7048e8;
+        color: #fff;
+        grid-column: 2 / -1;
+        /* Parent element of .btn, so: */
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 0 40px;
+      }
+
+      section {
+        background-color: #e9ecef;
+        padding: 40px;
+        display: flex;
+        flex-direction: column; /* For the vertical gap */
+        gap: 40px;
+
+        /* By default, this container element grows to fit the content, and, as a consequence, the others also expand. If we don't want this: */
+
+        overflow: scroll; /* This alone does not work, because instead of giving us a scroll bar it shrinks the elements to fit */
+        /* This happens because flex shrink is set to 1 by default */
+        /* flex-shrink: 0;  Done in each of the emails */
+        /* Also notice that we can set overflow to hidden, this must be because this kind of functionality is treated with javascript */
+      }
+
+      aside {
+        background-color: #e9ecef;
+      }
+      .btn {
+        /* They are centered because they are treated like text elements, inline elements, and since we have text align to center everywhere they are also centered */
+        display: inline-block;
+        font-size: 16px;
+        background-color: #5f3dc4;
+        border: none;
+        cursor: pointer;
+        color: #fff;
+        padding: 8px 12px;
+        font-weight: bold;
+        /* align-items: center;
+        gap: 12px;  SAME MISTAKE. THIS IS DONE ONE THE PARENT ELEMENT */
+      }
+
+      /* Selecting the last child element of the btn class (trash) in order to give it a different background color */
+      .btn:last-child {
+        background-color: #d6336c;
+        margin-left: auto; /* Like this the element goes all the way to the right */
+      }
+
+      .email {
+        background-color: #adb5bd;
+        height: 96px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>Nav</nav>
+    <!-- Only for applications -->
+    <menu>
+      <button class="btn">New</button>
+      <button class="btn">Reply</button>
+      <button class="btn">Forward</button>
+      <button class="btn">Mark as unread</button>
+      <button class="btn">Trash</button>
+    </menu>
+    <section>
+      <div class="email">Email 1</div>
+      <div class="email">Email 2</div>
+      <div class="email">Email 3</div>
+      <div class="email">Email 4</div>
+      <div class="email">Email 5</div>
+      <div class="email">Email 6</div>
+      <div class="email">Email 7</div>
+      <div class="email">Email 8</div>
+      <div class="email">Email 9</div>
+      <div class="email">Email 10</div>
+    </section>
+    <!-- Main email view, main is for displaying the main piece of content-->
+    <main>Email</main>
+    <aside>Additional info</aside>
+  </body>
+</html>
+
+<!-- The difference between nav and menu. Nav is for a typical navigation of a site (navigation which contains links that point to other places in the application), menu is for menu buttons in an actual web application -->
