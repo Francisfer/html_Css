@@ -1,6 +1,6 @@
 /* HEADER */
 /*****************************************/
-header {
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -225,7 +225,7 @@ header {
 }
 
 /*****************************************/
-/* HOW IT WORKS SECTION */
+/* MEALS SECTION */
 /*****************************************/
 .section-meals {
   padding: 9.6rem 0;
@@ -235,8 +235,17 @@ header {
   box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.075);
   border-radius: 11px;
   overflow: hidden; /* ANOTHER use for overflow, because the image and the text of the other card (or any element) where covering the borders */
+  transition: all 0.4s;
 }
 
+/* Making the cards move in the y axis*/
+.meal:hover {
+  transform: translateY(-1.2rem);
+  /* just like before, the animation is placed in the original state .meal */
+
+  box-shadow: 0 3.2rem 6.4rem rgba(0, 0, 0, 0.06);
+  /* To simulate that the card gets toward the light when hovered */
+}
 .meal-content {
   padding: 3.2rem 4.8rem 4.8rem 4.8rem;
 }
@@ -285,7 +294,7 @@ header {
 
 .meal-attribute {
   font-size: 1.8rem;
-  display: flex;
+  display: flex; /* Align horizontally*/
   align-items: center;
   gap: 1.6rem;
 }
@@ -296,10 +305,208 @@ header {
   color: #e67e22; /* Depending on the icons we might need to use fill, stroke, color or even font-size to style them */
 }
 
+.all-recipes {
+  text-align: center;
+  /* We do what follows here because we want the link to be reusable */
+  font-size: 1.8rem;
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column; /* Align vertically */
+  gap: 1.6rem;
+}
+
+.list-item {
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.list-icon {
+  width: 3rem;
+  height: 3rem;
+  color: #e67e22;
+}
 /* Redefining the strong element so it doesn't get so bold. goes to the general of course */
 /* strong {
   font-weight: 500;
 } */
+
+/*****************************************/
+/* TESTIMONIALS SECTION */
+/*****************************************/
+
+.section-testimonials {
+  /* padding: 9.6rem 0; */
+  background-color: #fdf2e9;
+  display: grid;
+  grid-template-columns: 55fr 45fr; /* IMPORTANT */
+  align-items: center;
+}
+
+/* We are not using the grid from before because that was built for bigger layouts, so the spacing / gap that we've used there would be too big for such a small component */
+.testimonials-container {
+  padding: 9.6rem;
+}
+.testimonials {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 4.8rem;
+  column-gap: 8rem;
+}
+
+.testimonial-img {
+  /* Here we want the images to have a fixed width */
+  width: 6.4rem;
+  border-radius: 50%;
+  margin-bottom: 1.2rem;
+}
+
+.testimonial-text {
+  font-size: 1.8rem;
+  line-height: 1.88;
+  margin-bottom: 1.6rem;
+}
+.testimonial-name {
+  font-size: 1.6rem;
+  color: #6f6f6f;
+}
+
+/*---------Gallery--------*/
+/* Notice that there was no need to add classes to all the images, we want to style them all in the same way */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.6rem;
+  padding: 1.6rem;
+}
+.gallery-item img {
+  /* Notice the spaces between the images, this happens because they are inline elements by default, so to remove that space we: */
+  display: block;
+  /* The images still huge after setting the container to grid, the solution is to make them flexible by giving them a width */
+  width: 100%;
+  transition: all 0.4s;
+}
+
+/* IMAGE effect*/
+.gallery-item img:hover {
+  transform: scale(1.1);
+}
+
+/* The reason why we placed the images in a figure container was to now add the effect of scaling the images without overflowing the container */
+.gallery-item {
+  overflow: hidden;
+}
+
+/*****************************************/
+/* Pricing SECTION */
+/*****************************************/
+.pricing-plan {
+  border-radius: 1.1rem;
+
+  width: 75%;
+}
+
+.section-pricing {
+  padding: 9.6rem 0;
+}
+.plan-header {
+  text-align: center;
+  margin-bottom: 4.8rem;
+}
+
+/* To align an item without having to change the general grid */
+.pricing-plan--starter {
+  justify-self: end;
+  border: 2px solid #fdf2e9;
+  padding: 4.6rem;
+}
+
+/* To deemphasize the starter plan */
+.pricing-plan--complete {
+  background-color: #fdf2e9;
+  padding: 4.8rem;
+  position: relative;
+  overflow: hidden; /* Hides the content that its overflowing it */
+}
+
+/* Pseudo element */
+.pricing-plan--complete::after {
+  content: "Best value";
+  position: absolute;
+  top: 6%;
+  right: -18%; /* It needs to be flexible - % */
+
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #333;
+  background-color: #ffd43b;
+  padding: 0.8rem 8rem;
+  transform: rotate(45deg);
+  /* Don't forget that to find the right values of right and left at this point it is better in the inspector */
+}
+
+.plan-name {
+  color: #cf711f;
+  font-size: 2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.75;
+  margin-bottom: 3.2rem;
+}
+.plan-price {
+  font-size: 6.2rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1.6rem;
+}
+
+.plan-price span {
+  font-size: 3rem;
+  font-weight: 500;
+  margin-right: 0.8rem;
+}
+.plan-text {
+  font-size: 1.6rem;
+  line-height: 1.6;
+  color: #6f6f6f;
+}
+
+.plan-sign-up {
+  text-align: center;
+  margin-top: 4.8rem; /* the list is general */
+}
+
+.plan-details {
+  font-size: 1.6rem;
+  line-height: 1.6rem;
+  text-align: center;
+}
+
+.feature-icon {
+  color: #e67e22;
+  background-color: #fdf2e9;
+  height: 3.2rem;
+  width: 3.2rem;
+  margin-bottom: 3.2rem;
+  padding: 1.6rem;
+  border-radius: 50%;
+}
+.feature-title {
+  font-size: 2.4rem;
+  color: #333;
+  font-weight: 700;
+  margin-bottom: 1.6rem;
+}
+.feature-text {
+  font-size: 1.8rem;
+  line-height: 1.8;
+}
 /* ------------------------------------
 Things to take:
 

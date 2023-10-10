@@ -33,7 +33,10 @@ Paragraph default: 1.6
 #51cf66
 #94d82d
 #ffd43b
-- Greys: #555; #333;
+- Greys:
+#555; 
+#333;
+#6f6f6f lightest grey allowed on #fdf2e9
 
 ---- 03 IMAGES - unsplash ----
 ---- 04 ICONS ----
@@ -129,7 +132,8 @@ strong {
   font-weight: 600;
   /* Css animation -  has to be placed in the rule that has the original state. the first value is for the properties that we want to animate, the second is for how much time. The third is the type of the animation */
 
-  transition: background-color 0.3s;
+  /* transition: background-color 0.3s; Notice that, like this, we are only transitioning the background color and not the box shadow (what creates the border in the outline button) which creates a weird effect, so we need to transition all properties */
+  transition: all 0.3s;
 }
 
 .btn--full:link,
@@ -154,6 +158,25 @@ strong {
   /* border: 3px solid #fff; We can't add a border like this because all the content moves when the button is hovered. For this we use a trick with box shadow to add the border inside: */
   box-shadow: inset 0 0 0 3px #fff; /* We don't have the inset keyword of border */
 }
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column; /* Align vertically */
+  gap: 1.6rem;
+}
+
+.list-item {
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.list-icon {
+  width: 3rem;
+  height: 3rem;
+  color: #e67e22;
+}
 
 /* Helper class - so that we don't have to wrap both buttons in a flex div and add a gap. REMEMBER THAT WE ALSO SHOULD'T ADD THE MARGIN TO THE BUTTON ITSELF BECAUSE WE MIGHT USE IT FURTHER AHEAD */
 
@@ -162,6 +185,31 @@ strong {
   margin-right: 1.6rem !important;
 }
 
+.margin-bottom-md {
+  margin-bottom: 4.8rem !important;
+  /* Here is an example of not working without the important keyword, of course we could have used a margin top to the div that includes the link but we could not reuse it */
+}
+
+.center-text {
+  text-align: center;
+}
+.link:link,
+.link:visited {
+  display: inline-block;
+  color: #e67e22;
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 1px solid currentColor;
+  /* Instead of using the text decoration we use border because we can give it some padding */
+  /* current color repeats the text color above, we don't have to repeat it and, in the hover state the same happens with the same color that we give */
+  transition: all 0.3s;
+}
+
+.link:hover,
+.link:active {
+  color: #cf711f;
+  border-bottom: 1px solid transparent; /* If we set it to none the display jumps because there is one px that is getting out of the element */
+}
 /*--------- Reusable grid and centered container (not the container class, that is to have the content centered in the viewport, with a max width and padding at both sides) ------------*/
 
 .container {
@@ -180,7 +228,21 @@ strong {
   display: grid;
   row-gap: 9.6rem;
   column-gap: 6.4rem;
+  /* margin-bottom: 9.6rem; Adding the margin to the bottom here makes is so that it is going to be applied everywhere. But we only want that margin when there are two grids */
 }
+/* So, we can say that when a grid is the last child, the margin should be 0 */
+/* IMPORTANT !! */
+/* .grid:last-child {
+  margin-bottom: 0;
+} */
+
+/* To make things even better we can use the NOT pseudo class, so a grid that is not the last child will have the margin that we want 9.6rem, otherwise */
+/* With this we can operate just with this rule */
+
+.grid:not(:last-child) {
+  margin-bottom: 9.6rem;
+}
+
 .grid--center-v {
   align-items: center;
 }
