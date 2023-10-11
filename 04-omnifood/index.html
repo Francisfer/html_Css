@@ -17,7 +17,9 @@
   </head>
   <body>
     <header class="header">
-      <img class="logo" src="img/omnifood-logo.png" alt="Omnifood logo" />
+      <a href="#">
+        <img class="logo" src="img/omnifood-logo.png" alt="Omnifood logo" />
+      </a>
 
       <!-- Before, we just place a bunch of anchors into the nav, however, that is not the most semantic way of building a navigation.-->
       <!-- A navigation should be a list of anchors grouped together, that's why we use a list -->
@@ -25,12 +27,12 @@
 
       <nav class="main-nav">
         <ul class="main-nav-list">
-          <li><a class="main-nav-link" href="#">Section 1</a></li>
-          <li><a class="main-nav-link" href="#">Section 2</a></li>
-          <li><a class="main-nav-link" href="#">Section 3</a></li>
-          <li><a class="main-nav-link" href="#">Section 4</a></li>
+          <li><a class="main-nav-link" href="#">How it works</a></li>
+          <li><a class="main-nav-link" href="#">Meals</a></li>
+          <li><a class="main-nav-link" href="#">Testimonials</a></li>
+          <li><a class="main-nav-link" href="#">Pricing</a></li>
           <!-- Class to style the last element differently - not using the last child element because we need this configuration in many places -->
-          <li><a class="main-nav-link nav-cta" href="#">Section 5</a></li>
+          <li><a class="main-nav-link nav-cta" href="#">Try for free</a></li>
         </ul>
       </nav>
     </header>
@@ -556,6 +558,152 @@
           </div>
         </div>
       </section>
+      <section class="section-cta">
+        <!-- We want this section to be centered, but we need to build another grid because we don't want the elements to have the same width - cta -->
+        <div class="container">
+          <!-- this element is going to be the cta because we want it to be inside of the container, so that the padding no longer affects the cta -->
+          <div class="cta">
+            <div class="cta-text-box">
+              <h2 class="heading-secondary">Get your first meal for free!</h2>
+              <p class="cta-text">
+                Healthy, tasty and hassle-free meals are waiting for you. Start
+                eating well today. You can cancel or pause anytime. And the
+                first meal is on us!
+              </p>
+
+              <!-- The action on a form is the url responsible for receiving the data, label and input are always grouped in div -->
+              <form class="cta-form" action="#">
+                <!-- INLINE ELEMENTS -->
+                <!-- the label for is used to connect to the id of the input, in this case when we click in the label the cursor appears in the input (focus state) -->
+                <div>
+                  <label for="full-name">Full Name</label>
+                  <input
+                    id="full-name"
+                    type="text"
+                    placeholder="John Doe"
+                    required
+                  />
+                </div>
+                <div>
+                  <label for="email">Email address</label>
+                  <input
+                    id="email"
+                    type="email"
+                    placeholder="me@example.com"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <!-- the select is for the user to tell where they've heard about them -->
+                  <label for="select-where">Where did you hear from us?</label>
+                  <select name="" id="select-where" required>
+                    <option value="">Please choose one option:</option>
+                    <option value="friends">Friends and family</option>
+                    <option value="youtube">Youtube video</option>
+                    <option value="podcast">Podcast</option>
+                    <option value="facebook">Facebook ad</option>
+                    <option value="others">Others</option>
+                  </select>
+                </div>
+
+                <!-- we can use input type button or just button. A button on a form automatically submits and refresh the page -->
+                <button class="btn btn--form">Sign up now</button>
+              </form>
+            </div>
+
+            <!-- Like this the div has no context for accessibility, because the image only exists in css for styling purposes. -->
+            <!-- For this we use an attribute called role and use the aria-label like alt -->
+            <div
+              class="cta-img-box"
+              role="img"
+              aria-label="Woman enjoying food"
+            ></div>
+          </div>
+        </div>
+      </section>
+      <footer class="footer">
+        <div class="container grid grid--footer">
+          <div class="logo-col">
+            <a href="#" class="footer-logo">
+              <img
+                class="logo"
+                src="img/omnifood-logo.png"
+                alt="Omnifood logo"
+              />
+              <!-- we reuse the class logo in the image because the size and style are to be maintained -->
+            </a>
+
+            <ul class="social-links">
+              <li>
+                <a class="footer-link" href="#"
+                  ><ion-icon
+                    class="social-icon"
+                    name="logo-instagram"
+                  ></ion-icon
+                ></a>
+              </li>
+              <li>
+                <a class="footer-link" href="#"
+                  ><ion-icon class="social-icon" name="logo-facebook"></ion-icon
+                ></a>
+              </li>
+              <li>
+                <a class="footer-link" href="#"
+                  ><ion-icon class="social-icon" name="logo-twitter"></ion-icon
+                ></a>
+              </li>
+            </ul>
+
+            <p class="copyright">
+              Copyright &copy; 2023 by Omnifood, Inc. All rights reserved.
+            </p>
+          </div>
+
+          <!-- Notice everything that is new - address element, the href for cell number and email, the line break inside a paragraph to separate the anchors, -->
+          <div class="address-col">
+            <p class="footer-heading">Contact us</p>
+            <address class="contacts">
+              <p class="address">
+                623 Harrison St., 2nd Floor, San Francisco, CA 94107
+              </p>
+              <p>
+                <a class="footer-link" href="tel:415-201-6370">415-201-6370</a
+                ><br />
+                <a class="footer-link" href="mailto:hello@omnifood.com"
+                  >hello@omnifood.com</a
+                >
+              </p>
+            </address>
+          </div>
+          <nav class="nav-col">
+            <p class="footer-heading">Account</p>
+            <ul class="footer-nav">
+              <li><a class="footer-link" href="#">Create account</a></li>
+              <li><a class="footer-link" href="#">Sign in</a></li>
+              <li><a class="footer-link" href="#">iOS app</a></li>
+              <li><a class="footer-link" href="#">Android app</a></li>
+            </ul>
+          </nav>
+          <nav class="nav-col">
+            <p class="footer-heading">Company</p>
+            <ul class="footer-nav">
+              <li><a class="footer-link" href="#">About Omnifood</a></li>
+              <li><a class="footer-link" href="#">For Business</a></li>
+              <li><a class="footer-link" href="#">Cooking partners</a></li>
+              <li><a class="footer-link" href="#">Careers</a></li>
+            </ul>
+          </nav>
+          <nav class="nav-col">
+            <p class="footer-heading">Resources</p>
+            <ul class="footer-nav">
+              <li><a class="footer-link" href="#">Recipe directory</a></li>
+              <li><a class="footer-link" href="#">Help center</a></li>
+              <li><a class="footer-link" href="#">Privacy & terms</a></li>
+            </ul>
+          </nav>
+        </div>
+      </footer>
     </main>
     <!-- site says here, but it also works in the head -->
     <script
@@ -572,4 +720,9 @@
 <!--
   anchors - for going somewhere inside or out of the page
   buttons - fot actions
+  
+  The main area of the website is for non repeated content, the footer and header might be repeated on some other pages that are part of the overall website.
+
+
+  TRICKS app layout, here with the logo-col set to flex
 -->
