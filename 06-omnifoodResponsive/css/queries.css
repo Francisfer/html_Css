@@ -1,0 +1,256 @@
+/* First we need to find our breakpoints, combining the strategy of seeing where our design breaks and also taking into account the common screen width ranges */
+
+/* Remember that we have containers with different width, but the widest is the hero with max-width of 1300px, the reusable container with 1200px max. */
+
+/* At some point we are going to make the hero 1200px wide just as the rest of the page (reusable container) */
+
+/* There is an extremely common screen size at 1366px, because they are the so called hd ready, so we can start by choosing a value between 1300px and 1366px */
+
+/* One important consideration is that here, with media queries, the default font-size will not be the one that we've specified (62.5%) to make the math easier */
+
+/* Rem and em do NOT depend on html font-size in media queries, instead it goes back to the browsers default: 1rem = 1em = 16px */
+
+/* rem is the root font-size and em is the current font-size, the reason for mentioning em is because rem has conflicts is some browsers when used in media queries */
+
+/* This is the first that we've talked about, so a value between 1300 and 1366. So, to calculate the em we just need to divide 1350px / 16px (rounded values). */
+
+/* So now we are going to change the max-width of the hero to also 1200 when the breakpoint is reached. Notice that we only really need to use em in the media query, the code to change in the rules is still written using rem and the mental convention that we had */
+
+/* Like this we make it aligned with the rest of the content (remember that we wanted the hero to be wider) */
+
+/* Now we adjust everything so that the content appears the way we want, for example the heading-primary now have 4 lines, so we decrease the font size. It is at 5.2rem so the previous value in our scale is 4.4rem */
+
+/* AS A RULE OF THUMB, a media query should work over a range of 200 or 300px, meaning that nothing should break if we shrink in that range */
+
+/*****************************************/
+/* BELOW 1344px - 84em (Smaller desktops) */
+/*****************************************/
+
+@media (max-width: 84em) {
+  .hero {
+    max-width: 120rem;
+  }
+  .heading-primary {
+    font-size: 4.4rem;
+  }
+  .gallery {
+    /* to fix the gallery we remove one column */
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/*****************************************/
+/* BELOW 1200px - 75rem (Landscape tablets - in the orientation of landscape) */
+/* 1200px is where we start to enter mobile device territory, so we always intervene here even though the design does not break, but everything looks huge */
+/*****************************************/
+
+/* We start by fixing the overall feeling that everything is too big, we can finally use to our advantage the fact that we've used responsive units right from the start */
+
+/* Everything that we are doing here only works because we already have the other three design ingredients in place - fluid grid, responsive images and responsive units */
+
+/* By responsive units we mean the use of rem all the time. What that means is that all of the lengths and all of the sizes that we defined anywhere on the page are dependent on just one setting - the html font-size */
+
+/* This means that if we change the font-size on the html, everything else is also going to change proportionally */
+
+/* Just by doing this the difference is huge, however there are still things that we need to adjust: the secondary and tertiary headings (too big, with this change they are the same size as the primary heading), decrease the spacing in the grid, the header content is more on the inside of the rest of the content (we want it to have the same padding as the container), the hero gap */
+
+/* Keep in mind that not all the changes are done based on the size and spacing patterns that we've established, sometimes we want the values to be the same as in other elements / components. */
+
+@media (max-width: 75em) {
+  html {
+    /* We just want to go down one pixel, so 9px / 16px */
+    font-size: 56.25%;
+  }
+
+  .heading-secondary {
+    font-size: 3.6rem;
+  }
+
+  .heading-tertiary {
+    font-size: 2.4rem;
+  }
+
+  .grid {
+    column-gap: 4.8rem;
+    row-gap: 6.4rem; /* Too big to begin with, so two steps down */
+  }
+
+  .header {
+    padding: 0 3.2rem;
+  }
+
+  .main-nav-list {
+    gap: 3.2rem;
+  }
+
+  .hero {
+    gap: 4.8rem;
+  }
+
+  .testimonials-container {
+    padding: 9.6rem 3.2rem;
+  }
+}
+
+/*****************************************/
+/* BELOW 944px - 84em (Tablets) */
+/*****************************************/
+/* At 900px the heading moved to four lines, there is not a lot of space in the hero section to have the content in both sides, the logos are way to big and crammed together, the titles in the section meals are too big, the testimonials do not have enough width to fit the content on the left side, in the cta the image is getting too narrow and the input fields look a bit too small */
+
+/* This means that its time to move somethings into one column (hero and testimonials). We went with the width where the heading moved to another line */
+
+@media (max-width: 59em) {
+  html {
+    /* 8px / 16px */
+    font-size: 50%;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 0 8rem;
+    gap: 6.4rem;
+  }
+
+  .hero-text-box,
+  .hero-img-box {
+    text-align: center;
+  }
+
+  /* With flex containers things work differently */
+  .delivered-meals {
+    justify-content: center;
+    margin-top: 3.2rem;
+  }
+
+  .hero-img {
+    width: 50%;
+  }
+
+  .logos img {
+    height: 2.4rem;
+  }
+
+  .step-number {
+    font-size: 7.4rem;
+  }
+
+  /* Because the first card has less space so it changes the meal title to two lines first */
+  .meal-content {
+    padding: 2.4rem 3.2rem 3.2rem 3.2rem;
+  }
+
+  /* Changing to one column */
+  .section-testimonials {
+    grid-template-columns: 1fr;
+  }
+
+  /* Images too big */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+
+    gap: 1.6rem;
+    padding: 1.6rem;
+  }
+
+  /* Give width to the image */
+  .cta {
+    display: grid;
+    /* 3 in 5 - 3 / 5 = 60% */
+    grid-template-columns: 3fr 2fr;
+  }
+
+  /* one line form */
+  .cta-form {
+    /* display: grid; */
+    grid-template-columns: 1fr;
+    /* column-gap: 3.2rem;
+    row-gap: 2.4rem; */
+  }
+
+  /* adjusting the button */
+  .btn--form {
+    margin-top: 2.1rem;
+  }
+
+  /*  MOBILE */
+  /* Shows the icon */
+  .icon-mobile-nav {
+    display: block;
+  }
+
+  /* Now we want to overlay the navigation over the entire viewport and have the menu anchors displayed vertically, so we need to take the navigation element out of the flow */
+  .main-nav {
+    background-color: #fff; /* to see what we're doing */
+    position: absolute;
+    /* we do NOT want to be relative to the header but the entire viewport, we can leave it like this. The element is now out of the flow */
+    top: 0;
+    left: 0;
+
+    /* Overlaying the entire viewport */
+    width: 100%;
+    height: 100vh;
+    /* The main nav is display block, so: */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s;
+    /* Then set the direction on the parent */
+
+    /* IMPORTANT - mechanism to show and hide the navigation */
+
+    /* HIDE navigation */
+    /* display: none; We cannot use display none now, otherwise we cannot make animations / transitions. Just the opacity set to 0 is not enough, we need a couple of steps: */
+
+    /* 1. HIDE IT VISUALLY */
+    opacity: 0;
+
+    /* 2. MAKE IT UNACCESSIBLE TO MOUSE AND KEYBOARD. otherwise we can still go through the links with tab */
+    pointer-events: none;
+
+    /* 3. HIDE IT FROM SCREEN READERS */
+    visibility: hidden;
+
+    /* Here is where we apply the mechanism that we're going to use to show and hide the navigation */
+    /* We add a class to the header */
+  }
+
+  /* If both classes are present - When the nav-open exists, the main-nav can be applied */
+  .nav-open .main-nav {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+  }
+
+  /* The same logic gets applied to show the close button  */
+  .nav-open .icon-mobile-nav[name="close-outline"] {
+    display: block;
+  }
+  /* and hide the menu btn */
+  .nav-open .icon-mobile-nav {
+    display: none;
+  }
+
+  /* SEE IF THERE IS A CONFLICT - IT IS MOST CERTAIN THAN YES BUT WE CAN ONLY SEE WHEN HE ADDS THE EVENT LISTENERS */
+  /* .nav-open .icon-mobile-nav[name="menu-outline"] {
+    display: none;
+  } */
+
+  /* Although the main-nav was not a flex container, the parent main-nav-list is a flex item in which we need to change the flex direction */
+  .main-nav-list {
+    flex-direction: column;
+    gap: 4.8rem;
+  }
+  /* Now to increase the font size of the anchors */
+  .main-nav-link:link,
+  .main-nav-link:visited {
+    font-size: 3rem;
+  }
+}
+
+/* - Font sizes (px):
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+
+
+- Spacing system (px)
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128 */

@@ -1,0 +1,782 @@
+/* HEADER */
+/*****************************************/
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fdf2e9;
+
+  /* Setting a fixed height so later we make it sticky */
+  height: 9.6rem;
+  padding: 0 4.8rem;
+}
+.logo {
+  height: 2.2rem;
+}
+
+/*****************************************/
+/* HEADER - NAVIGATION */
+/*****************************************/
+
+/* Display */
+.main-nav-list {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 4.8rem;
+}
+
+/* Styling the links*/
+
+.main-nav-link:link,
+.main-nav-link:visited {
+  display: inline-block; /*(good practice)*/
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  font-size: 1.8rem; /* Consistent with delivered-text*/
+  /* Transition on the original state element */
+  transition: all 0.3s;
+}
+
+.main-nav-link:hover,
+.main-nav-link:active {
+  color: #cf711f;
+}
+
+.main-nav-link.nav-cta:link,
+.main-nav-link.nav-cta:visited {
+  padding: 1.2rem 2.4rem;
+  border-radius: 9px;
+  color: #fff;
+  background-color: #e67e22;
+}
+
+.main-nav-link.nav-cta:hover,
+.main-nav-link.nav-cta:active {
+  background-color: #cf711f;
+}
+
+/* MOBILE */
+/* IMPORTANT - If you notice, both icons are in the same button. */
+
+.btn-mobile-nav {
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+}
+
+.icon-mobile-nav {
+  height: 4.8rem;
+  width: 4.8rem;
+  color: #333;
+  display: none;
+}
+
+/* The easiest way was to add another class to each icon (btn open / btn close) and set display none to both.*/
+
+/* But here he shows another selector which selects based on attributes. */
+/* 
+<ion-icon class="icon-mobile-nav" name="menu-outline"></ion-icon>
+
+<ion-icon class="icon-mobile-nav" name="close-outline"></ion-icon> 
+*/
+
+/* Now he selects the icon based on the name attribute and the other is simply set to display none */
+.icon-mobile-nav[name="close-outline"] {
+  display: none;
+}
+
+/* After this all we need to do is to set the display of the menu icon when the query is reached (now its none) */
+/*****************************************/
+/* HERO SECTION */
+/*****************************************/
+
+.section-hero {
+  background-color: #fdf2e9;
+  padding: 4.8rem 0 9.6rem 0;
+}
+
+/* Grid layout for the hero */
+.hero {
+  max-width: 130rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 0 auto;
+  align-items: center;
+  gap: 9.6rem;
+  padding: 0 3.2rem;
+}
+
+.hero-description {
+  font-size: 2rem;
+  line-height: 1.6;
+  margin-bottom: 4.8rem;
+}
+
+.hero-img {
+  width: 100%;
+}
+
+.delivered-meals {
+  display: flex;
+  margin-top: 8rem;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.delivered-imgs {
+  display: flex;
+}
+
+.delivered-imgs img {
+  /* width: 6.4rem; */
+  height: 4.8rem;
+  border-radius: 50%;
+  margin-right: -1.6rem; /* To overlap the images */
+  border: 3px solid #fdf2e9; /* Same color than the background */
+}
+.delivered-imgs img:last-child {
+  margin-right: 0;
+}
+
+.delivered-text {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.delivered-text span {
+  color: #cf711f;
+  font-weight: 700;
+}
+
+/*****************************************/
+/* FEATURED IN SECTION */
+/*****************************************/
+.section-featured {
+  padding: 4.8rem 0 3.2rem 0; /* Taking some space on the bottom */
+}
+
+.heading-featured-in {
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.75px;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 2.4rem;
+  color: #888;
+}
+
+.logos {
+  display: flex;
+  justify-content: space-around; /* So they don't go so wide */
+}
+
+.logos img {
+  height: 3.2rem;
+  filter: brightness(0);
+  opacity: 50%;
+}
+/*****************************************/
+/* HOW IT WORKS SECTION */
+/*****************************************/
+
+.section-how {
+  padding: 9.6rem 0;
+}
+
+.step-number {
+  font-size: 8.6rem;
+  font-weight: 600;
+  color: #ddd;
+  margin-bottom: 1.2rem;
+}
+
+.step-description {
+  font-size: 1.8rem;
+  line-height: 1.8;
+}
+
+.step-img-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.step-img-box::before,
+.step-img-box::after {
+  content: "";
+  display: block;
+  /* Technique to make it centered and behind of the image */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.step-img-box::before {
+  width: 60%;
+
+  padding-bottom: 60%; /* 60% of parents width */
+  border-radius: 50%;
+  background-color: #fdf2e9;
+
+  /* Sending it back with Z-INDEX - IMPORTANT RULE-PROPERTY !!!*/
+  z-index: -2;
+}
+/* Creating the other circle - we cannot use before again */
+
+.step-img-box::after {
+  width: 45%;
+  padding-bottom: 45%;
+  border-radius: 50%;
+  background-color: #fae5d3;
+
+  z-index: -1;
+}
+
+.step-img {
+  width: 35%;
+}
+
+/*****************************************/
+/* MEALS SECTION */
+/*****************************************/
+.section-meals {
+  padding: 9.6rem 0;
+}
+
+.meal {
+  box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.075);
+  border-radius: 11px;
+  overflow: hidden;
+  transition: all 0.4s;
+}
+
+/* Making the cards move in the y axis*/
+.meal:hover {
+  transform: translateY(-1.2rem);
+
+  box-shadow: 0 3.2rem 6.4rem rgba(0, 0, 0, 0.06);
+}
+.meal-content {
+  padding: 3.2rem 4.8rem 4.8rem 4.8rem;
+}
+.meal-tags {
+  margin-bottom: 1.2rem;
+  display: flex;
+  gap: 0.4rem;
+}
+.tag {
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  color: #333;
+  border-radius: 100px;
+  font-weight: 600;
+}
+/* Variations */
+.tag--vegetarian {
+  background-color: #51cf66;
+}
+.tag--vegan {
+  background-color: #94d82d;
+}
+.tag--paleo {
+  background-color: #ffd43b;
+}
+
+.meal-img {
+  width: 100%;
+}
+
+.meal-title {
+  font-size: 2.4rem;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 3.2rem;
+}
+
+.meal-attributes {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.meal-attribute {
+  font-size: 1.8rem;
+  display: flex; /* Align horizontally*/
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.meal-icon {
+  height: 2.4rem;
+  width: 2.4rem;
+  color: #e67e22; /* Depending on the icons we might need to use fill, stroke, color or even font-size to style them */
+}
+
+.all-recipes {
+  text-align: center;
+
+  font-size: 1.8rem;
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column; /* Align vertically */
+  gap: 1.6rem;
+}
+
+.list-item {
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.list-icon {
+  width: 3rem;
+  height: 3rem;
+  color: #e67e22;
+}
+
+/*****************************************/
+/* TESTIMONIALS SECTION */
+/*****************************************/
+
+.section-testimonials {
+  /* padding: 9.6rem 0; */
+  background-color: #fdf2e9;
+  display: grid;
+  grid-template-columns: 55fr 45fr; /* IMPORTANT */
+  align-items: center;
+}
+
+.testimonials-container {
+  padding: 9.6rem;
+}
+.testimonials {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 4.8rem;
+  column-gap: 8rem;
+}
+
+.testimonial-img {
+  width: 6.4rem;
+  border-radius: 50%;
+  margin-bottom: 1.2rem;
+}
+
+.testimonial-text {
+  font-size: 1.8rem;
+  line-height: 1.88;
+  margin-bottom: 1.6rem;
+}
+.testimonial-name {
+  font-size: 1.6rem;
+  color: #6f6f6f;
+}
+
+/*---------Gallery--------*/
+/* Notice that there was no need to add classes to all the images, we want to style them all in the same way */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.6rem;
+  padding: 1.6rem;
+}
+.gallery-item img {
+  display: block;
+
+  width: 100%;
+  transition: all 0.4s;
+}
+
+/* IMAGE effect*/
+.gallery-item img:hover {
+  transform: scale(1.1);
+}
+
+.gallery-item {
+  overflow: hidden;
+}
+
+/*****************************************/
+/* Pricing SECTION */
+/*****************************************/
+.pricing-plan {
+  border-radius: 1.1rem;
+
+  width: 75%;
+}
+
+.section-pricing {
+  padding: 9.6rem 0;
+}
+.plan-header {
+  text-align: center;
+  margin-bottom: 4.8rem;
+}
+
+/* To align an item without having to change the general grid */
+.pricing-plan--starter {
+  justify-self: end;
+  border: 2px solid #fdf2e9;
+  padding: 4.6rem;
+}
+
+/* To deemphasize the starter plan */
+.pricing-plan--complete {
+  background-color: #fdf2e9;
+  padding: 4.8rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Pseudo element */
+.pricing-plan--complete::after {
+  content: "Best value";
+  position: absolute;
+  top: 6%;
+  right: -18%;
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #333;
+  background-color: #ffd43b;
+  padding: 0.8rem 8rem;
+  transform: rotate(45deg);
+}
+
+.plan-name {
+  color: #cf711f;
+  font-size: 2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.75;
+  margin-bottom: 3.2rem;
+}
+.plan-price {
+  font-size: 6.2rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1.6rem;
+}
+
+.plan-price span {
+  font-size: 3rem;
+  font-weight: 500;
+  margin-right: 0.8rem;
+}
+.plan-text {
+  font-size: 1.6rem;
+  line-height: 1.6;
+  color: #6f6f6f;
+}
+
+.plan-sign-up {
+  text-align: center;
+  margin-top: 4.8rem;
+}
+
+.plan-details {
+  font-size: 1.6rem;
+  line-height: 1.6rem;
+  text-align: center;
+}
+
+.feature-icon {
+  color: #e67e22;
+  background-color: #fdf2e9;
+  height: 3.2rem;
+  width: 3.2rem;
+  margin-bottom: 3.2rem;
+  padding: 1.6rem;
+  border-radius: 50%;
+}
+.feature-title {
+  font-size: 2.4rem;
+  color: #333;
+  font-weight: 700;
+  margin-bottom: 1.6rem;
+}
+.feature-text {
+  font-size: 1.8rem;
+  line-height: 1.8;
+}
+
+/*****************************************/
+/* CTA SECTION */
+/*****************************************/
+.section-cta {
+  /* top right bottom left */
+  /* padding: 9.6rem 0 12.8rem 0; */
+  /* top horizontal left */
+  padding: 4.8rem 0 12.8rem 0;
+}
+
+.cta {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* 2/3 1/3*/
+  /* background-color: #e67e22; */
+  /* Same as meal for consistency */
+  box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.15);
+  border-radius: 11px;
+  background-image: linear-gradient(
+    to right bottom,
+    #eb984e,
+    #e67e22
+  ); /* To left, to right, to right bottom ... */
+  overflow: hidden;
+
+  /*Temporary so than later the content dictates the space */
+  /* height: 50rem; */
+}
+
+.cta-text-box {
+  padding: 4.8rem 6.4rem 6.4rem 6.4rem;
+  color: #45260a;
+}
+/* Because heading-secondary overwrites .cta-text-box, so overwriting some properties of the general class */
+.cta .heading-secondary {
+  /* color: #45260a; */
+  /* We could also have used inherited, because the parent is cta-text-box */
+  color: inherit;
+  margin-bottom: 3.2rem;
+}
+.cta-text {
+  font-size: 1.8rem;
+  line-height: 1.8;
+  margin-bottom: 4.8rem;
+}
+
+.cta-img-box {
+  /* Syntax for path */
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(235, 151, 78, 0.35),
+      rgba(230, 125, 34, 0.35)
+    ),
+    url("../img/eating.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.cta-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 3.2rem;
+  row-gap: 2.4rem;
+}
+
+.cta-form label {
+  display: block; /* to have its own line */
+  font-size: 1.6rem;
+  font-weight: 500;
+  margin-bottom: 1.2rem;
+}
+.cta-form input,
+.cta-form select {
+  width: 100%;
+  padding: 1.2rem;
+  font-size: 1.8rem;
+  /* So that the text in the placeholders inherit the font family */
+  font-family: inherit; /* From body */
+  color: inherit; /* From cta-text-box / closest parent */
+  border: none;
+  background-color: #fdf2e9;
+  border-radius: 9px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* New pseudo element to style the text in the placeholders */
+.cta-form input::placeholder {
+  color: #aaa;
+}
+.cta *:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.8rem rgba(253, 242, 233, 0.5);
+}
+
+/* As you might notice, the css rule that we've establish for the btn did not get applied. That's because this button is not an anchor/link (does not have href) */
+/* For this we've added the class btn to the general styles and did some transformations there that do not affect the other buttons */
+/* Also, to fake the need for another form button, we created btn--form and styled it in general, so we don't need to do it here */
+/* .cta-form button {
+} */
+
+/*****************************************/
+/* FOOTER */
+/*****************************************/
+.footer {
+  padding: 12.8rem 0;
+  border-top: 1px solid #eee;
+}
+
+.grid--footer {
+  grid-template-columns: 1.5fr 1.5fr 1fr 1fr 1fr;
+}
+
+/* Remember that we've added the class footer link also to the social links first, bu we need to add more stile */
+.social-links {
+  list-style: none;
+  display: flex;
+  gap: 2.4rem;
+}
+
+/* Now to add space after the logo image, its an anchor */
+.footer-logo {
+  display: block; /* anchors are inline, don't forget*/
+  margin-bottom: 3.2rem;
+}
+
+/* To make the icons bigger */
+.social-icon {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+/*copyright text*/
+.copyright {
+  font-size: 1.4rem;
+  line-height: 1.6;
+  color: #767676;
+  margin-top: auto;
+}
+.logo-col {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; Remember that our solution kind of fixed the problem, however we want the icons to be closer to the logo*/
+  /* The solution for this is just to set margin top to auto in the copyright */
+}
+.footer-heading {
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-bottom: 4rem;
+}
+
+/* To remove the default italic of the address element */
+.contacts {
+  font-style: normal;
+  font-size: 1.6rem;
+  line-height: 1.6;
+}
+
+/* To add space between the paragraphs in the address. IMPORTANT - WE CAN DO THIS IN THREE WAYS: HELPER CLASSES, SELECTING THE CHILD THAT WE WANT TO CHANGE OR GIVE IT A CLASS DIRECTLY */
+.address {
+  margin-bottom: 2.4rem;
+}
+
+.footer-nav {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.footer-link:link,
+.footer-link:visited {
+  text-decoration: none;
+  font-size: 1.6rem;
+  color: #767676;
+  transition: all 0.3s;
+}
+.footer-link:hover,
+.footer-link:active {
+  color: #555;
+}
+
+/* ------------------------------------
+Things to take:
+
+- Responsive design. There are essentially four ingredients to responsive designs:
+
+01 - Fluid layouts - (flex and css grid) to allow the webpage to adapt to the current viewport width (or even height). Use % or vh/vw instead of px for elements that SHOULD adapt to the viewport. Also use max-width instead of width.
+
+
+02 - Responsive units - REM instead of px for most lengths (conversion trick - set 1rem to 10px).
+
+
+03 - Flexible images - By default, images behave different text, they don't scale automatically as we change the viewport. Always use % for image dimensions, together with max.width.
+
+
+04 - Media queries - This is what brings all the other ingredients together and brings responsive sites to life. Media queries allow us to change styles on certain viewport widths (called breakpoints). Media queries allow developers to create different version of the site for different types of devices (different width).
+We only use them at the end.
+
+5 - Why we need a container flex to set a fixed size (so we can have a background color on the parent that occupies all the section)
+
+6 - px to rems
+
+7 - Trick to fake a inset border in the button with box-shadow
+
+8 - The button animation.
+
+9 - The helper function and the highest priority with the !important keyword. It is very common to use with margins that we don't want to apply directly on the elements in order to avoid conflict when we reuse them.
+
+10 - The hero container should be a little wider for aesthetics.
+*/
+
+/*
+Max-width and rem 
+
+- 1. width - When we use width with a value (1000px as in the example, the element will always stay that wide, if we collapse the page a horizontal scroll bar appears precisely because of that.)
+
+- 2. Max-width - if there is no more space to fit the container, the element should have the width of the parent container (body in this example). Like this it gets smaller after its width doesn't fit. This makes the element flexible to the viewport width.
+Notice the difference if we used percentages, the element would then occupy the hole viewport always, but we want it to just have 1000px if the viewport gets bigger. 
+
+3. REM - Root Element font size. The root of the document is the html element (parent to all the others).
+If we don't define any font-size on the html element, one rem is equal to the default browser font-size, which is 16px (unless the user changes it).
+So, in our example, if 1rem is 16px, 50 rem will be 800px.
+In the computed bar of the inspector we can see the rems in px.
+---> this will be handy when we build responsive layouts, because we only have to change the font-size in the html.
+TRICK - In order of facilitating the math, we can set the font-size to 10px in the html, so that 1rem is 10, 5rem is 50 etc. But we don't do it with pixels, otherwise the users would not be able to change the font-size (accessibility). 
+
+Instead we 
+
+.test {
+  background-color: red;
+  max-width: 50rem;
+  padding: 4rem;
+  font-size: 2rem;
+  color: #fff;
+}
+*/
+
+/* Create a reusable grid */
+
+/* .grid { */
+/* grid container*/
+/* display: grid;
+  gap: 9.6rem;
+} */
+
+/* .section-how div div { */
+/* Selecting all the div inside of the .section-how container */
+/* padding: 100px;
+  font-size: 50px;
+  background-color: #333;
+} */
+
+/* .grid--2-cols {
+  grid-template-columns: repeat(2, 1fr);
+} */
+/* Then we can copy it and specify the number of columns for each class */
+
+/* .grid--3-cols {
+  grid-template-columns: repeat(3, 1fr);
+}
+.grid--4-cols {
+  grid-template-columns: repeat(4, 1fr);
+} */
+
+/* Now we just have to add the classes to the elements*/
+
+/* -------- Generic centered container -----
+This container is going to be the element that we will always use in order to center the content on the page (inside of the viewport).
+*/

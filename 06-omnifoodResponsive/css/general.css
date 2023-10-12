@@ -1,0 +1,297 @@
+/*
+ALL FOR CONSISTENCY 
+
+---- 01 TYPOGRAPHY SYSTEM ----
+
+- Font sizes (px):
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+
+- Font weights:
+Default: 400
+Medium: 500
+Semi-bold: 600
+Bold: 700
+
+- Line heights:
+Default: 1
+Small: 1.05
+Medium: 1.2
+Large: 1.8
+Paragraph default: 1.6
+
+- Letter spacing
+-0.5px
+0.75px
+
+---- 02 COLORS ----
+
+- Primary: #e67e22
+- Tints: 
+#fdf2e9;
+#fae5d3
+#eb984e
+- Shades: 
+#cf711f
+
+#45260a
+- Accents:
+#51cf66
+#94d82d
+#ffd43b
+- Greys:
+#555; 
+#333;
+#888
+#6f6f6f lightest grey allowed on #fdf2e9
+#767676 lightest grey allowed on #fff
+
+
+---- 03 IMAGES - unsplash ----
+---- 04 ICONS ----
+
+---- 05 SHADOWS ----
+box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.075);
+---- 06 BORDER-RADIUS ----
+Default: 9px
+Medium: 11px
+---- 07 WHITESPACE ----
+- Spacing system (px)
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+*/
+
+/* -------------------------- */
+
+/* First general style - after we might change the font-family and the other rules */
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  /* font-size: 10px; */
+  /* 10px / 16px = 0.625 === 62.5% */
+  /* font-size: 62.5%; */
+  /* font-size: 10px; Impossible to change the font size in the browser */
+  /* 10px / 16px = 0.625 --> *100 = 62.5 */
+  font-size: 62.5%;
+  /* Like this we respect the scales and use the trick to facilitate the math */
+}
+body {
+  font-family: "Rubik", sans-serif;
+  line-height: 1;
+  font-weight: 400;
+  color: #555;
+}
+
+strong {
+  font-weight: 500;
+}
+/*****************************************/
+/* GENERAL REUSABLE COMPONENTS */
+/*****************************************/
+
+.heading-primary {
+  font-size: 5.2rem;
+
+  line-height: 1.05;
+
+  /* For small distances we can keep using px */
+  margin-bottom: 3.2rem;
+}
+
+.heading-primary,
+.heading-secondary,
+.heading-tertiary {
+  font-weight: 700;
+  color: #333;
+  letter-spacing: -0.5px;
+}
+.heading-secondary {
+  font-size: 4.4rem;
+  line-height: 1.2;
+  margin-bottom: 9.6rem;
+}
+
+.heading-tertiary {
+  font-size: 3rem;
+  line-height: 1.2;
+  margin-bottom: 3.2rem;
+}
+
+.subheading {
+  display: block; /* Because a span is an inline element */
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #cf711f;
+  text-transform: uppercase;
+  margin-bottom: 1.6rem;
+  letter-spacing: 0.75px;
+}
+.btn,
+.btn:link,
+.btn:visited {
+  display: inline-block; /* Always (good practice), for adding the padding*/
+  font-size: 2rem;
+  text-decoration: none;
+  padding: 1.6rem 3.2rem;
+  border-radius: 9px;
+  font-weight: 600;
+  /* Css animation -  has to be placed in the rule that has the original state. the first value is for the properties that we want to animate, the second is for how much time. The third is the type of the animation */
+
+  /* transition: background-color 0.3s; Notice that, like this, we are only transitioning the background color and not the box shadow (what creates the border in the outline button) which creates a weird effect, so we need to transition all properties */
+  transition: all 0.3s;
+
+  /* ONLY FOR THE BTN CLASS - the form button */
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.btn--full:link,
+.btn--full:visited {
+  background-color: #e67e22;
+  color: #fff;
+}
+.btn--full:hover,
+.btn--full:active {
+  background-color: #cf711f;
+  color: #fff;
+}
+.btn--outline:link,
+.btn--outline:visited {
+  background-color: #fff;
+  color: #555;
+}
+.btn--outline:hover,
+.btn--outline:active {
+  background-color: #fdf2e9;
+  color: #555;
+  /* border: 3px solid #fff; We can't add a border like this because all the content moves when the button is hovered. For this we use a trick with box shadow to add the border inside: */
+  box-shadow: inset 0 0 0 3px #fff; /* We don't have the inset keyword of border */
+}
+
+.btn--form {
+  background-color: #45260a;
+  color: #fdf2e9;
+  /* this is now a grid item, remember that the form is grid. so it is this big because it occupies all the space of its grid container */
+  align-self: end; /* So it gets aligned with the other */
+  padding: 1.137rem;
+  /* padding: 1.2rem; */
+}
+.btn--form:hover {
+  background-color: #fff;
+  color: #555;
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column; /* Align vertically */
+  gap: 1.6rem;
+}
+
+.list-item {
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+  line-height: 1.2;
+}
+
+.list-icon {
+  width: 3rem;
+  height: 3rem;
+  color: #e67e22;
+}
+
+/* Helper class - so that we don't have to wrap both buttons in a flex div and add a gap. REMEMBER THAT WE ALSO SHOULD'T ADD THE MARGIN TO THE BUTTON ITSELF BECAUSE WE MIGHT USE IT FURTHER AHEAD */
+
+/* When we use a helper class, we usually want that the style that it has always gets applied, no matter other that are already on the element- !important */
+.margin-right-sm {
+  margin-right: 1.6rem !important;
+}
+
+.margin-bottom-md {
+  margin-bottom: 4.8rem !important;
+  /* Here is an example of not working without the important keyword, of course we could have used a margin top to the div that includes the link but we could not reuse it */
+}
+
+.center-text {
+  text-align: center;
+}
+.link:link,
+.link:visited {
+  display: inline-block;
+  color: #e67e22;
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 1px solid currentColor;
+  /* Instead of using the text decoration we use border because we can give it some padding */
+  /* current color repeats the text color above, we don't have to repeat it and, in the hover state the same happens with the same color that we give */
+  transition: all 0.3s;
+}
+
+.link:hover,
+.link:active {
+  color: #cf711f;
+  border-bottom: 1px solid transparent; /* If we set it to none the display jumps because there is one px that is getting out of the element */
+}
+/*--------- Reusable grid and centered container (not the container class, that is to have the content centered in the viewport, with a max width and padding at both sides) ------------*/
+
+.container {
+  /* 1140px - 114rem another standard */
+  max-width: 120rem; /* Standard */
+  margin: 0 auto; /* centering it */
+  padding: 0 3.2rem; /* To add horizontal space, with this we get approximately the value above of 114rem for the content because we subtract 32px of both sides of the content. */
+}
+
+/* The most important thing here is that we never want to do this on the parent class, in this case the section how. */
+/* This because we might want to have a background color or an image that extends to all of the viewport (like we did in the hero)*/
+/* So we create a div to place these classes */
+
+.grid {
+  /* grid container*/
+  display: grid;
+  row-gap: 9.6rem;
+  column-gap: 6.4rem;
+  /* margin-bottom: 9.6rem; Adding the margin to the bottom here makes is so that it is going to be applied everywhere. But we only want that margin when there are two grids */
+}
+/* So, we can say that when a grid is the last child, the margin should be 0 */
+/* IMPORTANT !! */
+/* .grid:last-child {
+  margin-bottom: 0;
+} */
+
+/* To make things even better we can use the NOT pseudo class, so a grid that is not the last child will have the margin that we want 9.6rem, otherwise */
+/* With this we can operate just with this rule */
+
+.grid:not(:last-child) {
+  margin-bottom: 9.6rem;
+}
+
+.grid--center-v {
+  align-items: center;
+}
+
+.grid--2-cols {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid--3-cols {
+  grid-template-columns: repeat(3, 1fr);
+}
+.grid--4-cols {
+  grid-template-columns: repeat(4, 1fr);
+}
+.grid--5-cols {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+/* If we want to change or remove the focus pseudo class */
+
+*:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.8rem rgba(230, 125, 34, 0.5);
+}
