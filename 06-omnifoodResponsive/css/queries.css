@@ -175,26 +175,34 @@
 
   /*  MOBILE */
   /* Shows the icon */
-  .icon-mobile-nav {
+  .btn-mobile-nav {
     display: block;
+    z-index: 9999;
   }
 
   /* Now we want to overlay the navigation over the entire viewport and have the menu anchors displayed vertically, so we need to take the navigation element out of the flow */
   .main-nav {
-    background-color: #fff; /* to see what we're doing */
+    background-color: rgba(255, 255, 255, 0.97); /* to see what we're doing */
     position: absolute;
-    /* we do NOT want to be relative to the header but the entire viewport, we can leave it like this. The element is now out of the flow */
+    /* we do NOT want to be relative to the header but the entire viewport, we can leave it like this FOR NOW. The element is now out of the flow */
     top: 0;
     left: 0;
 
     /* Overlaying the entire viewport */
     width: 100%;
     height: 100vh;
+
+    /* Sliding in the navigation - Translate it in the x axis by its entire width */
+    transform: translateX(100%);
+    /* Like this we can still see it if we scroll to the side, for this we need to use another property that is set in the general css. Sometimes if we place it in the body it doesn't work, so we also need to place it in the html OVERFLOW-X: HIDDEN */
+    /* In our case none of the solutions worked because we set the position absolute here but relative to the viewport (body), we need the header to be the relative container */
+    /* Makes sense that things are done this way in the general styles, for all the transitions that overflow the viewport */
+
     /* The main nav is display block, so: */
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.5s;
+    transition: all 0.5s ease-in; /* IMPORTANT */
     /* Then set the direction on the parent */
 
     /* IMPORTANT - mechanism to show and hide the navigation */
@@ -210,16 +218,18 @@
 
     /* 3. HIDE IT FROM SCREEN READERS */
     visibility: hidden;
-
-    /* Here is where we apply the mechanism that we're going to use to show and hide the navigation */
-    /* We add a class to the header */
   }
+  /* Here is where we apply the mechanism that we're going to use to show and hide the navigation */
+  /* We add a class to the header */
 
   /* If both classes are present - When the nav-open exists, the main-nav can be applied */
   .nav-open .main-nav {
     opacity: 1;
     pointer-events: auto;
     visibility: visible;
+
+    /* Sliding in the navigation - Translate it backwards in the x axis by its entire width */
+    transform: translateX(0);
   }
 
   /* The same logic gets applied to show the close button  */
@@ -227,11 +237,11 @@
     display: block;
   }
   /* and hide the menu btn */
-  .nav-open .icon-mobile-nav {
+  .nav-open .icon-mobile-nav[name="menu-outline"] {
     display: none;
   }
 
-  /* SEE IF THERE IS A CONFLICT - IT IS MOST CERTAIN THAN YES BUT WE CAN ONLY SEE WHEN HE ADDS THE EVENT LISTENERS */
+  /* There is no conflict by selecting the button as above because we use toggle, IMPORTANT that's why we placed both icons in the same button */
   /* .nav-open .icon-mobile-nav[name="menu-outline"] {
     display: none;
   } */
@@ -248,9 +258,175 @@
   }
 }
 
+/*****************************************/
+/* BELOW 704px - 44em (Small Tablets) 
+converting to em 700 / 16 = 43.75
+rounding to 44, so 44 * 16 = 704
+*/
+/*****************************************/
+/* 
+WHAT TO DO 
+- Everything that is 4 or 3 columns (meals and the container with the icons) to two columns.
+- Space between the h2
+- Footer grid
+*/
+@media (max-width: 44em) {
+  .grid--3-cols,
+  .grid--4-cols {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* To center the diets */
+  .diets {
+    grid-column: 1 / -1;
+    display: inline-block;
+    justify-self: center; /* Because we are setting this on the individual item and not on the grid container */
+  }
+
+  /* The space between the h2 */
+  .heading-secondary {
+    margin-bottom: 4.8rem;
+  }
+
+  /* Adjusting the width on the pricing plan, remember that we set it to 75% */
+  .pricing-plan {
+    width: 100%;
+  }
+
+  /* Adjusting the footer */
+  /* To fix the problems the idea is to move the three last columns (account, company and resources) to the top and the other two below */
+  /* This seems easier than it actually is because we still want the columns to maintain the same with */
+  /* If we simply rebuild the grid to have three columns, it will only work for the last three */
+  /* We can easily place the last three in the top row, however, the other two are supposed to occupy the remaining space (be centered in other words), but there is only one grid space on the right side */
+  /* The solution is all about how many columns there are, they are two grid items in the bottom right? With just one column left it is not possible to split it up*/
+
+  /* But if we have six columns, we can make the first row span across two columns and the second row span across three columns */
+
+  .grid--footer {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  /* Placing the last three in the top */
+  .nav-col {
+    grid-row: 1;
+    grid-column: span 2;
+    margin-bottom: 3.2rem;
+  }
+  .logo-col,
+  .address-col {
+    grid-column: span 3;
+  }
+}
+
+/*****************************************/
+/* BELOW 544px - 34em (Small Tablets) 
+
+For smaller phones he likes to use a media query at 600px, but since we used one at 700px, the design still looks good at 600px.
+
+We went for 550px because that was the point where, although not perfect, the page was still acceptable.
+The featured in logos are still inside the viewport
+
+Phones are between 350 and 450
+*/
+/*****************************************/
+/* 
+WHAT TO DO 
+- The featured in logos
+- The phones image is starting to be really small with the content really big.
+- The cards are small
+- The gallery could be bigger
+- The pricing cards are very narrow, even the button wraps the text in three lines.
+- The call for action.
+*/
+
 /* - Font sizes (px):
 10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
 
 
 - Spacing system (px)
 2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128 */
+
+@media (max-width: 34em) {
+  /* All grids in one column */
+  .grid--2-cols,
+  .grid--3-cols,
+  .grid--4-cols {
+    grid-template-columns: 1fr;
+  }
+
+  /* Decreasing the gap */
+  .grid {
+    row-gap: 4.8rem;
+  }
+
+  /* Resizing */
+  .hero {
+    padding: 0 3.2rem;
+  }
+  .section-hero {
+    padding: 2.4rem 0 6.4rem 0;
+  }
+
+  .btn,
+  .btn:link,
+  .btn:visited {
+    padding: 2.4rem 1.6rem;
+    /* They are again side by side and bigger so they are easier to tap */
+  }
+
+  /* Increasing the image width */
+  .hero-img {
+    width: 80%;
+  }
+
+  /* Decrease the logos */
+  .logos img {
+    height: 1.2rem;
+  }
+
+  /* Changing the rows in the how it works, notice that the nth child refers to the second child of the container and NOT the first child of the element that has the class .step-img-box. The number is the order of the child in the container, it has nothing to do with the class name */
+  .step-img-box:nth-child(2) {
+    grid-row: 1;
+  }
+  .step-img-box:nth-child(6) {
+    grid-row: 5;
+  }
+
+  /* After this, the space (gap) is the same across the grid, but it makes no sense because there is the need to put the image closest to the content that belongs */
+  /* We cannot change the gap selectively, but we can select the images .step-img-box and give it a bit of space using the translate */
+
+  /* translate is the easiest way of moving elements around without affecting the rest of the elements around it (open the grid to see it inside of the margin) */
+  .step-img-box {
+    transform: translateY(2.4rem);
+  }
+
+  /* Making the testimonials with just one column, remember that it is not a predefined grid, so it didn't change */
+
+  .testimonials {
+    grid-template-columns: 1fr;
+  }
+
+  /* Making the gallery a 4 by 3 */
+
+  .gallery {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.2rem;
+  }
+
+  /* Making the call to action  */
+
+  .cta {
+    grid-template-columns: 1fr;
+  }
+
+  /* Reducing the spacing in the text box */
+  .cta-text-box {
+    padding: 3.2rem;
+  }
+
+  /* Notice that the image disappeared because it (the div) doesn't have any content, so css does not give it any height. the only reason why it was visible was because it was side by side with the element that had content */
+  .cta-img-box {
+    height: 32rem;
+    grid-row: 1;
+  }
+}

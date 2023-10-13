@@ -9,6 +9,9 @@
   /* Setting a fixed height so later we make it sticky */
   height: 9.6rem;
   padding: 0 4.8rem;
+
+  /* For the mobile nav */
+  position: relative;
 }
 .logo {
   height: 2.2rem;
@@ -64,13 +67,13 @@
   border: none;
   background-color: inherit;
   cursor: pointer;
+  display: none;
 }
 
 .icon-mobile-nav {
   height: 4.8rem;
   width: 4.8rem;
   color: #333;
-  display: none;
 }
 
 /* The easiest way was to add another class to each icon (btn open / btn close) and set display none to both.*/
@@ -88,6 +91,28 @@
 }
 
 /* After this all we need to do is to set the display of the menu icon when the query is reached (now its none) */
+
+/* Sticky navigation */
+
+.sticky .header {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 8rem; /* Set manually so that we can work in the observer with this value */
+  padding-top: 0;
+  padding-bottom: 0;
+  background-color: rgba(255, 255, 255, 0.95);
+  z-index: 999;
+  box-shadow: 0 1.2rem 3.2rem rgba(0, 0, 0, 0.06);
+}
+
+/* So far we used the strategy of only applying a certain style if a certain class was present in one of the parent elements */
+/* For example with the main nav style, which would only apply if the nav open class was present on one of the parent elements */
+/* Here we go with the same principle, all we have to do is to add the sticky class to the body, like this the styles will only apply to the header if the body has the class of sticky, the same with the margin */
+.sticky .section-hero {
+  margin-top: 9.6rem;
+}
 /*****************************************/
 /* HERO SECTION */
 /*****************************************/

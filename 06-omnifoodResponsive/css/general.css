@@ -77,12 +77,22 @@ html {
   /* 10px / 16px = 0.625 --> *100 = 62.5 */
   font-size: 62.5%;
   /* Like this we respect the scales and use the trick to facilitate the math */
+
+  /* For the sliding navigation */
+  overflow-x: hidden;
+
+  /* 
+  DOES NOT WORK WELL ON SAFARI AND EDGE - ITS MUCH FASTER
+  scroll-behavior: smooth; */
 }
 body {
   font-family: "Rubik", sans-serif;
   line-height: 1;
   font-weight: 400;
   color: #555;
+
+  /* For the sliding navigation - only works if there is nothing absolutely positioned in relation to the body (which was the case when we set the position absolute in the first place) */
+  overflow-x: hidden;
 }
 
 strong {
