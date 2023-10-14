@@ -182,7 +182,12 @@
 
   /* Now we want to overlay the navigation over the entire viewport and have the menu anchors displayed vertically, so we need to take the navigation element out of the flow */
   .main-nav {
-    background-color: rgba(255, 255, 255, 0.97); /* to see what we're doing */
+    backdrop-filter: blur(
+      10px
+    ); /* Blurs what is behind the element SAFARI DON'T WORK. to work we need to add the prefix (we can see this in caniuse.com) */
+    -webkit-backdrop-filter: blur(10px);
+
+    background-color: rgba(255, 255, 255, 0.9); /* to see what we're doing */
     position: absolute;
     /* we do NOT want to be relative to the header but the entire viewport, we can leave it like this FOR NOW. The element is now out of the flow */
     top: 0;
